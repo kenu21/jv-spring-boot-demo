@@ -39,7 +39,7 @@ public class BookController {
 
     @PostMapping
     public void add(@RequestBody @Valid BookDto bookDto) {
-        Book book = new Book(bookDto.getTitle(), bookDto.getYear(), bookDto.getPrice());
+        Book book = mappingDto(bookDto);
         bookService.save(book);
     }
 
@@ -56,5 +56,10 @@ public class BookController {
         } else {
             return null;
         }
+    }
+
+    private Book mappingDto(BookDto bookDto) {
+        Book book = new Book(bookDto.getTitle(), bookDto.getYear(), bookDto.getPrice());
+        return book;
     }
 }
