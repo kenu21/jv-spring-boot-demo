@@ -50,7 +50,7 @@ public class BookController {
 
     @PutMapping("/{bookId}")
     public Book update(@PathVariable("bookId") Long bookId, @RequestBody @Valid BookDto bookDto) {
-        Optional<Book> book = bookService.updateById(bookId, bookDto);
+        Optional<Book> book = bookService.updateById(bookId, mappingDto(bookDto));
         if (book.isPresent()) {
             return book.get();
         } else {

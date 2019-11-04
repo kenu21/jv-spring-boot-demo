@@ -3,7 +3,6 @@ package mate.academy.boot.hellobootdemo.service;
 import java.util.List;
 import java.util.Optional;
 
-import mate.academy.boot.hellobootdemo.dto.BookDto;
 import mate.academy.boot.hellobootdemo.entity.Book;
 import mate.academy.boot.hellobootdemo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +30,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Optional<Book> updateById(Long bookId, BookDto bookDto) {
+    public Optional<Book> updateById(Long bookId, Book book) {
         Optional<Book> byId = bookRepository.findById(bookId);
         if (byId.isPresent()) {
-            Book book = byId.get();
-            book.setTitle(bookDto.getTitle());
-            book.setYear(bookDto.getYear());
-            book.setPrice(bookDto.getPrice());
-            bookRepository.save(book);
-            return Optional.of(book);
+            Book bookFromBd = byId.get();
+            bookFromBd.setTitle(book.getTitle());
+            bookFromBd.setYear(book.getYear());
+            bookFromBd.setPrice(book.getPrice());
+            bookRepository.save(bookFromBd);
+            return Optional.of(bookFromBd);
         } else {
             return Optional.empty();
         }

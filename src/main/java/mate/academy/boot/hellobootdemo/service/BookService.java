@@ -3,7 +3,6 @@ package mate.academy.boot.hellobootdemo.service;
 import java.util.List;
 import java.util.Optional;
 
-import mate.academy.boot.hellobootdemo.dto.BookDto;
 import mate.academy.boot.hellobootdemo.entity.Book;
 
 public interface BookService {
@@ -13,7 +12,7 @@ public interface BookService {
 
     Book save(Book book);
 
-    Optional<Book> updateById(Long bookId, BookDto bookDto);
+    Optional<Book> updateById(Long bookId, Book book);
 
     void delete(Long bookId);
 }
